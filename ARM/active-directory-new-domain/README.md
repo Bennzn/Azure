@@ -4,6 +4,6 @@ This template will deploy a new VM (along with a new VNet and Load Balancer) and
 
 Click the button below to deploy
 
-[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https%3A%2F%2Fraw.githubusercontent.com%2FBennzn%2FAzure%2Fmaster%2FARM%2Factive-directory-new-domain%2FADC-with-active-directory-setup.json)
+[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FBennzn%2FAzure%2Fmaster%2FARM%2Factive-directory-new-domain%2FADC-with-active-directory-setup.json)
 
-[![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](https%3A%2F%2Fraw.githubusercontent.com%2FBennzn%2FAzure%2Fmaster%2FARM%2Factive-directory-new-domain%2FADC-with-active-directory-setup.json)
+[![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FBennzn%2FAzure%2Fmaster%2FARM%2Factive-directory-new-domain%2FADC-with-active-directory-setup.json)
