@@ -32,6 +32,12 @@
                 "description": "Name of the VNET"
             }
         },
+        "VNET-Subnet": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the VNET-Subnet"
+            }
+        },
         "adminUserName": {
             "type": "string",
             "metadata": {
@@ -118,7 +124,7 @@
                 },
                 "subnets": [
                     {
-                        "name": "[concat(parameters('VMName'),'-VirtualNetwork-Subnet')]",
+                        "name": "[parameters('VNET-Subnet')]",
                         "properties": {
                             "addressPrefix": "10.9.0.0/24",
                             "networkSecurityGroup": {
@@ -136,7 +142,7 @@
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('VMName'),'-PublicIP'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks', concat(parameters('VMName'),'-VirtualNetwork'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('VNET-Subnet'))]"
             ],
             "tags": {
                 "displayName": "[concat(parameters('VMName'),'-NetworkInterface')]"
@@ -151,7 +157,7 @@
                                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('VMName'),'-PublicIP'))]"
                             },
                             "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat(parameters('VMName'),'-VirtualNetwork'), concat(parameters('VMName'),'-VirtualNetwork-Subnet'))]"
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('VNET'), parameters('VNET-Subnet'))]"
                             }
                         }
                     }
