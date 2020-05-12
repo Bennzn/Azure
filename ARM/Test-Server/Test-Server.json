@@ -142,7 +142,7 @@
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('VMName'),'-PublicIP'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('VNET-Subnet'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('VNET'))]"
             ],
             "tags": {
                 "displayName": "[concat(parameters('VMName'),'-NetworkInterface')]"
