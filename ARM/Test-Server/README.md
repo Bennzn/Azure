@@ -1,4 +1,4 @@
-# Create a new Windows VM and create a new AD Forest, Domain and DC
+# Create a basic Windows VM with all dependencies
 
 This is a Test Template to deploy a selfwritten Template
 
