@@ -148,13 +148,13 @@
                             },
                             "subnet": {
                                 "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('VNET'), parameters('VNET-Subnet'))]"
-                            },
-                            "networkSecurityGroup": {
-                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(parameters('VMName'),'-nsg'))]"
                             }
                         }
                     }
-                ]
+                ],
+                "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(parameters('VMName'),'-nsg'))]"
+                            }
             }
         },
         {
