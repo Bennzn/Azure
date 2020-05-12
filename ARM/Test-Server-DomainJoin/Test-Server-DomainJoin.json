@@ -59,7 +59,7 @@
     },
     "functions": [],
     "variables": {
-        
+        "JoinUser": "[concat(parameters('adminUsername'),'@',parameters('DomainFQDN'))]"
     },
     "resources": [
         {
@@ -217,7 +217,7 @@
                 "autoUpgradeMinorVersion": true,
                 "settings": {
                     "Name": "[parameters('domainFQDN')]",
-                    "User": "[parameters('adminUserName')]",
+                    "User": "[variables('JoinUser')]",
                     "Restart": "true",
                     "Options": "3"
                 },
@@ -226,6 +226,7 @@
                 }
             },
             "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('VMName'))]"
                 
             ]
     }
