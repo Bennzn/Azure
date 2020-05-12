@@ -104,7 +104,6 @@
             "apiVersion": "2019-11-01",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', concat(parameters('VMName'),'-nsg'))]"
             ],
             "tags": {
                 "displayName": "[parameters('VNET')]"
@@ -132,7 +131,8 @@
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('VMName'),'-PublicIP'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('VNET'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('VNET'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', concat(parameters('VMName'),'-nsg'))]"
             ],
             "tags": {
                 "displayName": "[concat(parameters('VMName'),'-NetworkInterface')]"
