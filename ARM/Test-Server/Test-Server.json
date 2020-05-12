@@ -218,10 +218,6 @@
         }
     ],
     "outputs": {
-        "PublicIP": {
-            "type": "string",
-            "value": "[reference(concat(parameters('VMName'),'-PublicIP'))]"
-        },
         "VMPrivateIP": {
             "type": "string",
             "value": "[reference(concat(parameters('VMName'),'-NetworkInterface')).ipConfigurations[0].properties.privateIPAddress]"
