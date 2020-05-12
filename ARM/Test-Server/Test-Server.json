@@ -26,6 +26,12 @@
                 "description": "WindowsOSVersion to use"
             }
         },
+        "VNET": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the VNET"
+            }
+        },
         "adminUserName": {
             "type": "string",
             "metadata": {
@@ -94,7 +100,7 @@
             }
         },
         {
-            "name": "[concat(parameters('VMName'),'-VirtualNetwork')]",
+            "name": "[parameters('VNET')]",
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2019-11-01",
             "location": "[resourceGroup().location]",
@@ -102,7 +108,7 @@
                 "[resourceId('Microsoft.Network/networkSecurityGroups', concat(parameters('VMName'),'-nsg'))]"
             ],
             "tags": {
-                "displayName": "[concat(parameters('VMName'),'-VirtualNetwork')]"
+                "displayName": "[parameters('VNET')]"
             },
             "properties": {
                 "addressSpace": {
@@ -114,7 +120,7 @@
                     {
                         "name": "[concat(parameters('VMName'),'-VirtualNetwork-Subnet')]",
                         "properties": {
-                            "addressPrefix": "10.99.0.0/24",
+                            "addressPrefix": "10.9.0.0/24",
                             "networkSecurityGroup": {
                                 "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(parameters('VMName'),'-nsg'))]"
                             }
