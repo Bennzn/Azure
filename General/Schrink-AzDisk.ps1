@@ -1,8 +1,13 @@
+# Script from https://github.com/jrudlin/Azure/blob/master/General/Shrink-AzDisk.ps1
+
+
+
 # Variables
-$DiskID = "/subscriptions/a1bbd5c6-d285-4ac7-9e70-94a4caaab377/resourceGroups/WVD-RG/providers/Microsoft.Compute/disks/ADC01_OsDisk_1_8785f2f372ea44fd9efc69dd39b09acd"# eg. "/subscriptions/203bdbf0-69bd-1a12-a894-a826cf0a34c8/resourcegroups/rg-server1-prod-1/providers/Microsoft.Compute/disks/Server1-Server1"
-$VMName = "ADC01"
+$DiskID = "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-TEST/providers/Microsoft.Compute/disks/VM-WVD-Test01_OsDisk_1_fa039ebba03349ed9010e5384b1d27b1"# eg. "/subscriptions/203bdbf0-69bd-1a12-a894-a826cf0a34c8/resourcegroups/rg-server1-prod-1/providers/Microsoft.Compute/disks/Server1-Server1"
+$VMName = "VM-WVD-Test01"
 $DiskSizeGB = 32
-$AzSubscription = "Kostenlose Testversion"
+$AzSubscription = "Microsoft Partner Network"
+$accountType = "Standard_LRS" # Type of the new Disk
 
 # Script
 # Provide your Azure admin credentials
@@ -17,8 +22,13 @@ $VM = Get-AzVm | ? Name -eq $VMName
 #Provide the name of your resource group where snapshot is created
 $resourceGroupName = $VM.ResourceGroupName
 
-# Get Disk Name from ID
+# Get Disk from ID
 $Disk = Get-AzDisk | ? Id -eq $DiskID
+
+# Get VM/Disk generation from Disk
+$HyperVGen = $Disk.HyperVGeneration
+
+# Get Disk Name from Disk
 $DiskName = $Disk.Name
 
 # Get SAS URI for the Managed disk
@@ -67,7 +77,8 @@ $emptydiskforfootername = "$($VM.StorageProfile.OsDisk.Name)-empty.vhd"
 $diskConfig = New-AzDiskConfig `
     -Location $VM.Location `
     -CreateOption Empty `
-    -DiskSizeGB $DiskSizeGB
+    -DiskSizeGB $DiskSizeGB `
+    -HyperVGeneration $HyperVGen
 
 $dataDisk = New-AzDisk `
     -ResourceGroupName $resourceGroupName `
@@ -126,13 +137,13 @@ $emptyDiskblob | Remove-AzStorageBlob -Force
 $NewDiskName = "$DiskName" + "-new"
 
 #Provide the storage type for the Managed Disk. PremiumLRS or StandardLRS.
-$accountType = "Standard_LRS"
+#$accountType = "Premium_LRS"
 
 # Get the new disk URI
 $vhdUri = $osdisk.ICloudBlob.Uri.AbsoluteUri
 
 # Specify the disk options
-$diskConfig = New-AzDiskConfig -AccountType $accountType -Location $VM.location -DiskSizeGB $DiskSizeGB -SourceUri $vhdUri -CreateOption Import -StorageAccountId $StorageAccount.Id
+$diskConfig = New-AzDiskConfig -AccountType $accountType -Location $VM.location -DiskSizeGB $DiskSizeGB -SourceUri $vhdUri -CreateOption Import -StorageAccountId $StorageAccount.Id -HyperVGeneration $HyperVGen
 
 #Create Managed disk
 $NewManagedDisk = New-AzDisk -DiskName $NewDiskName -Disk $diskConfig -ResourceGroupName $resourceGroupName
