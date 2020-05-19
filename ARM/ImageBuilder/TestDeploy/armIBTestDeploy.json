@@ -57,13 +57,18 @@
 
                     {
                         "type": "PowerShell",
-                        "name": "CreateBuildPath",
-                        "scriptUri": "https://raw.githubusercontent.com/danielsollondon/azvmimagebuilder/master/testPsScript.ps1"
+                        "name": "Install Chocolatey",
+                        "scriptUri": "https://raw.githubusercontent.com/Bennzn/Azure/master/ARM/ImageBuilder/CustomScripts/InstallChoco.ps1"
                     },
                     {
                         "type": "WindowsRestart",
                         "restartCheckCommand": "echo Azure-Image-Builder-Restarted-the-VM  > c:\\buildArtifacts\\azureImageBuilderRestart.txt",
                         "restartTimeout": "5m"
+                    },
+                    {
+                        "type": "PowerShell",
+                        "name": "Install Apps with Choco",
+                        "scriptUri": "https://raw.githubusercontent.com/Bennzn/Azure/master/ARM/ImageBuilder/CustomScripts/InstallBasicAppsChoco.ps1"
                     },
                     {
                         "type": "File",
