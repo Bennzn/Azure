@@ -3,8 +3,8 @@
 
 
 # Variables
-$DiskID = "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-TEST/providers/Microsoft.Compute/disks/VM-WVD-Test01_OsDisk_1_fa039ebba03349ed9010e5384b1d27b1"# eg. "/subscriptions/203bdbf0-69bd-1a12-a894-a826cf0a34c8/resourcegroups/rg-server1-prod-1/providers/Microsoft.Compute/disks/Server1-Server1"
-$VMName = "VM-WVD-Test01"
+$DiskID = "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-TEST/providers/Microsoft.Compute/disks/VM-FRA_disk1_577d7f87cec34c879a28f4af920855b7"
+$VMName = "VM-FRA"
 $DiskSizeGB = 32
 $AzSubscription = "Microsoft Partner Network"
 $accountType = "Standard_LRS" # Type of the new Disk
