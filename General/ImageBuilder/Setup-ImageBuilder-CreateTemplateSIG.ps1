@@ -16,13 +16,13 @@ $location="westeurope"
 $subscriptionID=$currentAzContext.Subscription.Id
 
 # name of the image to be created
-$imageName="imageBuilderCustomW2k19"
+$imageName="IB_CustomWin10EVDMU2004"
 
 # image template name
-$imageTemplateName="imageBuilderCustomTemplateW2k19"
+$imageTemplateName="IBCustomTemplateWin10EVDMU2004"
 
 # distribution properties object name (runOutput), i.e. this gives you the properties of the managed image on completion
-$runOutputName="ImageBuilderTest"
+$runOutputName="ImageBuilderWin10EVD2004"
 
 # create resource group
 #New-AzResourceGroup -Name $imageResourceGroup -Location $location
@@ -69,21 +69,21 @@ New-AzRoleAssignment -ObjectId $idenityNamePrincipalId -RoleDefinitionName $imag
 ##################################################################################
 
 $sigGalleryName= "imagebuilder_sig"
-$imageDefName ="IB-CustomW2k19"
+$imageDefName ="IB-CustomWin10-EVD-MU-2004"
 
 # additional replication region
-$replRegion2="westeurop"
+$replRegion2="westeurope"
 
 # create gallery
 New-AzGallery -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup  -Location $location
 
 # create gallery definition
-New-AzGalleryImageDefinition -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup -Location $location -Name $imageDefName -OsState generalized -OsType Windows -Publisher 'ACSResearch' -Offer 'Windows' -Sku 'Win2019'
+New-AzGalleryImageDefinition -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup -Location $location -Name $imageDefName -OsState generalized -OsType Windows -Publisher 'ACSResearch' -Offer 'office-365' -Sku '20h1-evd-o365pp'
 
 #######################################################################
 
-$templateUrl="https://raw.githubusercontent.com/Bennzn/Azure/master/ARM/ImageBuilder/TestDeploy/armIBTestDeploy.json"
-$templateFilePath = "armIBTestDeploy.json"
+$templateUrl="https://raw.githubusercontent.com/Bennzn/Azure/master/ARM/ImageBuilder/Win10-MU-WVD-Chocolatey-NewImageToSIG/armIB-Win10-EVD-MU.json"
+$templateFilePath = "armIB-Win10-EVD-MU.json"
 
 Invoke-WebRequest -Uri $templateUrl -OutFile $templateFilePath -UseBasicParsing
 
@@ -100,6 +100,10 @@ Invoke-WebRequest -Uri $templateUrl -OutFile $templateFilePath -UseBasicParsing
 ((Get-Content -path $templateFilePath -Raw) -replace '<imgBuilderId>',$idenityNameResourceId) | Set-Content -Path $templateFilePath
 
 New-AzResourceGroupDeployment -ResourceGroupName $imageResourceGroup -TemplateFile $templateFilePath -api-version "2019-05-01-preview" -imageTemplateName $imageTemplateName -svclocation $location
+
+#New API (No -api-version tag)
+#New-AzResourceGroupDeployment -ResourceGroupName $imageResourceGroup -TemplateFile $templateFilePath -imageTemplateName $imageTemplateName -svclocation $location
+
 
 ############################################################
 
