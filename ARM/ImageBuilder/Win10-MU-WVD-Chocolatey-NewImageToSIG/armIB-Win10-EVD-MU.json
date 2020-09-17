@@ -31,7 +31,7 @@
             "identity": {
                 "type": "UserAssigned",
                         "userAssignedIdentities": {
-                        "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourcegroups/RG-WVD-ImageBuilder/providers/Microsoft.ManagedIdentity/userAssignedIdentities/ImageBuilderIdentityDev": {}
+                        "/subscriptions/<subscriptionID>/resourcegroups/RG-WVD-ImageBuilder/providers/Microsoft.ManagedIdentity/userAssignedIdentities/ImageBuilderIdentityDev": {}
                             
                     }
                     },
@@ -100,7 +100,7 @@
             [
                 {   
                     "type": "SharedImage",
-                    "galleryImageId": "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/IB-CustomWin10-EVD-MU-2004",
+                    "galleryImageId": "/subscriptions/<subscriptionID>/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/IB-CustomWin10-EVD-MU-2004",
                     "runOutputName": "ImageBuilderWin10EVD2004",
                     "artifactTags": {
                         "source": "azureVmImageBuilder",
