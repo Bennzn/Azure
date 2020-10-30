@@ -2,6 +2,9 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+							  
+																													   
+		  
         "nestedTemplatesLocation": {
             "value": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/nestedtemplates/"
         },
@@ -9,34 +12,37 @@
             "value": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/DSC/Configuration.zip"
         },
         "hostpoolName": {
-            "value": "HP-WVD-Win10-20h2"
+            "value": "HP-WVD-Win10-20h2" // TODO: Fill in parameter value
+        },
+        "hostpoolFriendlyName": {
+            "value": "Win10 20h2 Pooled"
         },
         "hostpoolDescription": {
-            "value": "Created through the WVD extension"
+            "value": "Created through DevOps Pipeline"
         },
         "location": {
-            "value": "eastus"
+            "value": "eastus" // TODO: Fill in parameter value
+		  
+								  
+						  
+		  
+						   
+						  
         },
-        "validationEnvironment": {
-            "value": false
-        },
-        "addToWorkspace": {
-            "value": false
-        },
-        "hostpoolType": {
-            "value": "Pooled"
-        },
-        "loadBalancerType": {
-            "value": "BreadthFirst"
-        },
-        "customRdpProperty": {
+        "workSpaceName": {
             "value": ""
         },
-        "vmTemplate": {
-            "value": "{\"domain\":\"research.acscloud.it\",\"galleryImageOffer\":null,\"galleryImagePublisher\":null,\"galleryImageSKU\":null,\"imageType\":\"CustomImage\",\"imageUri\":null,\"customImageId\":\"/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/WVD-Win10-20h2-O365\",\"namePrefix\":\"WVD-20h2\",\"osDiskType\":\"StandardSSD_LRS\",\"useManagedDisks\":true,\"vmSize\":{\"id\":\"Standard_D2s_v3\",\"cores\":2,\"ram\":8},\"galleryItemId\":null}"
+        "workspaceLocation": {
+            "value": ""
         },
-        "tokenExpirationTime": {
-            "value": "2020-10-31T14:34:02.078Z"
+        "workspaceResourceGroup": {
+            "value": ""
+        },
+        "allApplicationGroupReferences": {
+            "value": ""
+        },
+        "addToWorkspace": {
+            "value": false // TODO: Fill in parameter value
         },
         "administratorAccountUsername": {
             "value": "adminbenjaming@research.acscloud.it"
@@ -45,7 +51,7 @@
             "value": ""
         },
         "createAvailabilitySet": {
-            "value": true
+            "value": false
         },
         "vmResourceGroup": {
             "value": "RG-WVD-Test"
@@ -53,6 +59,9 @@
         "vmLocation": {
             "value": "westeurope"
         },
+        "vmTemplate": {
+            "value": "{\"domain\":\"research.acscloud.it\",\"galleryImageOffer\":null,\"galleryImagePublisher\":null,\"galleryImageSKU\":null,\"imageType\":\"CustomImage\",\"imageUri\":null,\"customImageId\":\"/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/WVD-Win10-20h2-O365\",\"namePrefix\":\"WVD-20h2\",\"osDiskType\":\"StandardSSD_LRS\",\"useManagedDisks\":true,\"vmSize\":{\"id\":\"Standard_D2s_v3\",\"cores\":2,\"ram\":8},\"galleryItemId\":null}"
+        },		
         "vmSize": {
             "value": "Standard_D2s_v3"
         },
@@ -65,11 +74,29 @@
         "vmImageType": {
             "value": "CustomImage"
         },
+        "vmGalleryImageOffer": {
+            "value": ""
+        },
+        "vmGalleryImagePublisher": {
+            "value": ""
+        },
+        "vmGalleryImageSKU": {
+            "value": ""
+        },
+        "vmImageVhdUri": {
+            "value": ""
+        },
+        "vmCustomImageSourceId": {
+            "value": ""
+        },
         "vmDiskType": {
             "value": "StandardSSD_LRS"
         },
         "vmUseManagedDisks": {
             "value": true
+        },
+        "storageAccountResourceGroupName": {
+            "value": ""
         },
         "existingVnetName": {
             "value": "VNET-WVD-WEU"
@@ -83,14 +110,41 @@
         "usePublicIP": {
             "value": false
         },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
         "createNetworkSecurityGroup": {
             "value": false
         },
-        "domain": {
+        "networkSecurityGroupId": {
             "value": ""
         },
-        "ouPath": {
+        "networkSecurityGroupRules": {
+            "value": []
+        },
+        "hostpoolType": {
+            "value": "Pooled" // TODO: Fill in parameter value
+        },
+        "personalDesktopAssignmentType": {
             "value": ""
+        },
+        "maxSessionLimit": {
+            "value": 4
+        },
+        "loadBalancerType": {
+            "value": "BreadthFirst"
+        },
+        "customRdpProperty": {
+            "value": ""
+        },
+        "vmTemplate": {
+            "value": ""
+        },
+        "tokenExpirationTime": {
+            "value": "" // TODO: Fill in parameter value
         },
         "hostpoolTags": {
             "value": {}
@@ -120,13 +174,19 @@
             "value": "2019-12-10-preview"
         },
         "deploymentId": {
-            "value": "aebeaed1-288b-436f-b328-6b0b3f97a043"
+            "value": ""
         },
-        "vmCustomImageSourceId": {
-            "value": "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/WVD-Win10-20h2-O365"
+        "validationEnvironment": {
+            "value": false
         },
-        "maxSessionLimit": {
-            "value": 4
+        "preferredAppGroupType": {
+            "value": "Desktop"
+        },
+        "ouPath": {
+            "value": ""
+        },
+        "domain": {
+            "value": ""
         }
     }
 }
