@@ -234,7 +234,7 @@ If ($Optimize -eq $true) {
     Add-Content -LiteralPath C:\New-WVDSessionHost.log "Creating C:\Optimize folder"
     New-Item -Path C:\ -Name Optimize -ItemType Directory -ErrorAction SilentlyContinue
     $LocalOptimizePath = "C:\Optimize\"
-    $WVDOptimizeURL = 'https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool/archive/master.zip'
+    $WVDOptimizeURL = 'https://github.com/Bennzn/Virtual-Desktop-Optimization-Tool/archive/master.zip'
     $WVDOptimizeInstaller = "Windows_10_VDI_Optimize-master.zip"
     Invoke-WebRequest `
         -Uri $WVDOptimizeURL `
