@@ -74,21 +74,6 @@
         "vmImageType": {
             "value": "CustomImage"
         },
-        "vmGalleryImageOffer": {
-            "value": ""
-        },
-        "vmGalleryImagePublisher": {
-            "value": ""
-        },
-        "vmGalleryImageSKU": {
-            "value": ""
-        },
-        "vmImageVhdUri": {
-            "value": ""
-        },
-        "vmCustomImageSourceId": {
-            "value": ""
-        },
         "vmDiskType": {
             "value": "StandardSSD_LRS"
         },
@@ -138,9 +123,6 @@
             "value": "BreadthFirst"
         },
         "customRdpProperty": {
-            "value": ""
-        },
-        "vmTemplate": {
             "value": ""
         },
         "tokenExpirationTime": {
