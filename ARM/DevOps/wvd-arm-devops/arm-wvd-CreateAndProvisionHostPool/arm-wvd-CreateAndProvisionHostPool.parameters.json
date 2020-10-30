@@ -42,7 +42,7 @@
             "value": "adminbenjaming@research.acscloud.it"
         },
         "administratorAccountPassword": {
-            "value": null
+            "value": ""
         },
         "createAvailabilitySet": {
             "value": true
