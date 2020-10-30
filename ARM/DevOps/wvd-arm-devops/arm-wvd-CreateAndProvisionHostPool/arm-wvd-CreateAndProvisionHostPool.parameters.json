@@ -173,6 +173,9 @@
         "apiVersion": {
             "value": "2019-12-10-preview"
         },
+        "vmCustomImageSourceId": {
+            "value": "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/WVD-Win10-20h2-O365"
+        },
         "deploymentId": {
             "value": ""
         },
