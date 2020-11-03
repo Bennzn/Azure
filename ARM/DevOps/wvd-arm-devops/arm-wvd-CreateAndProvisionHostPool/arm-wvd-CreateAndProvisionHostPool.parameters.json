@@ -12,7 +12,7 @@
             "value": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/DSC/Configuration.zip"
         },
         "hostpoolName": {
-            "value": "HP-WVD-Win10-20h2" // TODO: Fill in parameter value
+            "value": "HP-WVD-Win10-20h2"
         },
         "hostpoolFriendlyName": {
             "value": "Win10 20h2 Pooled"
@@ -21,13 +21,8 @@
             "value": "Created through DevOps Pipeline"
         },
         "location": {
-            "value": "eastus" // TODO: Fill in parameter value
+            "value": "eastus"
 		  
-								  
-						  
-		  
-						   
-						  
         },
         "workSpaceName": {
             "value": ""
@@ -42,7 +37,7 @@
             "value": ""
         },
         "addToWorkspace": {
-            "value": false // TODO: Fill in parameter value
+            "value": false
         },
         "administratorAccountUsername": {
             "value": "adminbenjaming@research.acscloud.it"
@@ -111,7 +106,7 @@
             "value": []
         },
         "hostpoolType": {
-            "value": "Pooled" // TODO: Fill in parameter value
+            "value": "Pooled"
         },
         "personalDesktopAssignmentType": {
             "value": ""
@@ -126,7 +121,7 @@
             "value": ""
         },
         "tokenExpirationTime": {
-            "value": "" // TODO: Fill in parameter value
+            "value": ""
         },
         "hostpoolTags": {
             "value": {}
