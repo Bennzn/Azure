@@ -46,7 +46,7 @@
             "value": ""
         },
         "createAvailabilitySet": {
-            "value": false
+            "value": true
         },
         "vmResourceGroup": {
             "value": "RG-WVD-Test"
