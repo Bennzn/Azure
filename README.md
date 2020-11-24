@@ -1,3 +1,8 @@
-# Azure
+# General Repo with misc content
 
-This is my first Git Repo!
+My first GitRepo with different content - primarily with WVD focus
+
+## Powershell
+## ARM
+## bicep
+## Terraform
