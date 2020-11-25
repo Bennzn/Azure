@@ -1,0 +1,74 @@
+
+
+//Define WVD deployment parameters
+param hostpoolName string = 'bicep-Pool'
+param hostpoolFriendlyName string = 'This WVD HostPool was created from a bicep generated ARM'
+param appgroupName string = 'bicep AppGroup'
+param appgroupNameFriendlyName string = 'bicep generated ARM template AppGoup'
+param workspaceName string = 'bicep WorkSpace'
+param workspaceNameFriendlyName string = 'bicep created ARM WS'
+param applicationgrouptype string = 'Desktop'
+param preferredAppGroupType string = 'Desktop'
+param wvdbackplanelocation string = 'eastus'
+param hostPoolType string = 'pooled'
+param loadBalancerType string = 'BreadthFirst'
+param logAnalyticsWorkspaceName string = 'bicep-logaws'
+param logAnalyticslocation string = 'westeurope'
+param logAnalyticsWorkspaceSku string = 'pergb2018'
+//param logAnalyticsResourceGroup string
+//param wvdBackplaneResourceGroup string
+
+//Create WVD Hostpool
+resource hp 'Microsoft.DesktopVirtualization/hostpools@2019-12-10-preview' = {
+  name: hostpoolName
+  location: wvdbackplanelocation
+  properties: {
+    friendlyName: hostpoolFriendlyName
+    hostPoolType : hostPoolType
+    loadBalancerType : loadBalancerType
+    preferredAppGroupType: preferredAppGroupType
+    
+  }
+}
+
+//Create WVD AppGroup
+resource ag 'Microsoft.DesktopVirtualization/applicationgroups@2019-12-10-preview' = {
+  name: appgroupName
+  location: wvdbackplanelocation
+  properties: {
+      friendlyName: appgroupNameFriendlyName
+      applicationGroupType: applicationgrouptype
+      hostPoolArmPath: hp.id
+    }
+  }
+
+//Create WVD Workspace
+resource ws 'Microsoft.DesktopVirtualization/workspaces@2019-12-10-preview' = {
+  name: workspaceName
+  location: wvdbackplanelocation
+  properties: {
+      friendlyName: workspaceNameFriendlyName
+      applicationGroupReferences: [
+        ag.id
+      ]
+  }
+}
+
+//Create Azure Log Analytics Workspace
+/* module wvdmonitor './6.4. wvd-LogAnalytics.bicep' = {
+  name : 'LAWorkspace'
+  scope: resourceGroup(logAnalyticsResourceGroup)
+  params: {
+    logAnalyticsWorkspaceName : logAnalyticsWorkspaceName
+    logAnalyticslocation : logAnalyticslocation
+    logAnalyticsWorkspaceSku : logAnalyticsWorkspaceSku
+    hostpoolName : hp.name
+    workspaceName : ws.name
+    logAnalyticsResourceGroup : logAnalyticsResourceGroup
+    wvdBackplaneResourceGroup : wvdBackplaneResourceGroup
+  }
+}
+*/
+
+  
+  

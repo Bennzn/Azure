@@ -1,0 +1,106 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "hostpoolName": {
+      "type": "string",
+      "defaultValue": "bicep-Pool"
+    },
+    "hostpoolFriendlyName": {
+      "type": "string",
+      "defaultValue": "This WVD HostPool was created from a bicep generated ARM"
+    },
+    "appgroupName": {
+      "type": "string",
+      "defaultValue": "bicep AppGroup"
+    },
+    "appgroupNameFriendlyName": {
+      "type": "string",
+      "defaultValue": "bicep generated ARM template AppGoup"
+    },
+    "workspaceName": {
+      "type": "string",
+      "defaultValue": "bicep WorkSpace"
+    },
+    "workspaceNameFriendlyName": {
+      "type": "string",
+      "defaultValue": "bicep created ARM WS"
+    },
+    "applicationgrouptype": {
+      "type": "string",
+      "defaultValue": "Desktop"
+    },
+    "preferredAppGroupType": {
+      "type": "string",
+      "defaultValue": "Desktop"
+    },
+    "wvdbackplanelocation": {
+      "type": "string",
+      "defaultValue": "eastus"
+    },
+    "hostPoolType": {
+      "type": "string",
+      "defaultValue": "pooled"
+    },
+    "loadBalancerType": {
+      "type": "string",
+      "defaultValue": "BreadthFirst"
+    },
+    "logAnalyticsWorkspaceName": {
+      "type": "string",
+      "defaultValue": "bicep-logaws"
+    },
+    "logAnalyticslocation": {
+      "type": "string",
+      "defaultValue": "westeurope"
+    },
+    "logAnalyticsWorkspaceSku": {
+      "type": "string",
+      "defaultValue": "pergb2018"
+    }
+  },
+  "functions": [],
+  "resources": [
+    {
+      "type": "Microsoft.DesktopVirtualization/hostPools",
+      "apiVersion": "2019-12-10-preview",
+      "name": "[parameters('hostpoolName')]",
+      "location": "[parameters('wvdbackplanelocation')]",
+      "properties": {
+        "friendlyName": "[parameters('hostpoolFriendlyName')]",
+        "hostPoolType": "[parameters('hostPoolType')]",
+        "loadBalancerType": "[parameters('loadBalancerType')]",
+        "preferredAppGroupType": "[parameters('preferredAppGroupType')]"
+      }
+    },
+    {
+      "type": "Microsoft.DesktopVirtualization/applicationGroups",
+      "apiVersion": "2019-12-10-preview",
+      "name": "[parameters('appgroupName')]",
+      "location": "[parameters('wvdbackplanelocation')]",
+      "properties": {
+        "friendlyName": "[parameters('appgroupNameFriendlyName')]",
+        "applicationGroupType": "[parameters('applicationgrouptype')]",
+        "hostPoolArmPath": "[resourceId('Microsoft.DesktopVirtualization/hostPools', parameters('hostpoolName'))]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.DesktopVirtualization/hostPools', parameters('hostpoolName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.DesktopVirtualization/workspaces",
+      "apiVersion": "2019-12-10-preview",
+      "name": "[parameters('workspaceName')]",
+      "location": "[parameters('wvdbackplanelocation')]",
+      "properties": {
+        "friendlyName": "[parameters('workspaceNameFriendlyName')]",
+        "applicationGroupReferences": [
+          "[resourceId('Microsoft.DesktopVirtualization/applicationGroups', parameters('appgroupName'))]"
+        ]
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.DesktopVirtualization/applicationGroups', parameters('appgroupName'))]"
+      ]
+    }
+  ]
+}
