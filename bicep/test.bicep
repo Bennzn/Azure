@@ -7,3 +7,4 @@ resource stg 'Microsoft.Storage/storageAccounts@2020-08-01-preview' = {
    name: 'Standard_LRS'
  }
 }
+
