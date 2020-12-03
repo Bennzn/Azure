@@ -4,7 +4,7 @@ import-module az.desktopvirtualization
 import-module az.network
 import-module az.compute
 
-$existingWVDHostPoolName = $args[2]
+$existingWVDHostPoolName = $args[0]
 
 # Get the hostpool information
 $hostpool = Get-AzWvdHostPool | ? { $_.Name -eq $existingWVDHostPoolName }
