@@ -3,6 +3,7 @@
 import-module az.desktopvirtualization
 import-module az.network
 import-module az.compute
+import-module az.resources
 
 $existingWVDHostPoolName = $args[0]
 
@@ -26,9 +27,12 @@ if ($null -eq $sessionHostsNumber) {
 
 # Get current sessionhost configuration, used in the next steps
 $existingHostName = $sessionHosts[-1].ResourceId.Split("/")[-1]
+Write-Host "Current Hostname is $existingHostname"
 $prefix = $existingHostName.Split("-")[0]
+Write-Host "Current prefix is $prefix"
 $currentVmInfo = Get-AzVM -name $existingHostName
 $vmInitialNumber = ([int]$existingHostName.Split("-")[-1]) + 1
+Write-Host "Current vmInitialNumber is $vmInitialNumber"
 $vmNetworkInformation = (Get-AzNetworkInterface -ResourceId $currentVmInfo.NetworkProfile.NetworkInterfaces.id)
 $virtualNetworkName = $vmNetworkInformation.IpConfigurations.subnet.id.split("/")[-3]
 $virutalNetworkResoureGroup = $vmNetworkInformation.IpConfigurations.subnet.id.split("/")[4]
