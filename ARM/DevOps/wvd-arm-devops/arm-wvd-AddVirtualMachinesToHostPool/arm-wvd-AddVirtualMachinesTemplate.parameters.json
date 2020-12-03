@@ -9,10 +9,10 @@
             "value": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/DSC/Configuration.zip"
         },
         "hostpoolName": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "HP-WVD-Win10-20h2" 
         },
         "hostpoolToken": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "" 
         },
         "hostpoolResourceGroup": {
             "value": ""
@@ -24,37 +24,37 @@
             "value": {}
         },
         "vmTemplate": {
-            "value": ""
-        },
+            "value": "{\"domain\":\"research.acscloud.it\",\"galleryImageOffer\":null,\"galleryImagePublisher\":null,\"galleryImageSKU\":null,\"imageType\":\"CustomImage\",\"imageUri\":null,\"customImageId\":\"/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/WVD-Win10-20h2-O365\",\"namePrefix\":\"WVD-20h2\",\"osDiskType\":\"StandardSSD_LRS\",\"useManagedDisks\":true,\"vmSize\":{\"id\":\"Standard_D2s_v3\",\"cores\":2,\"ram\":8},\"galleryItemId\":null}"
+        },	
         "administratorAccountUsername": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "" 
         },
         "administratorAccountPassword": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "" 
         },
         "createAvailabilitySet": {
-            "value": false // TODO: Fill in parameter value
+            "value": false 
         },
         "vmResourceGroup": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "RG-WVD-Test"
         },
         "vmLocation": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "westeurope"
         },
         "vmSize": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "Standard_D2s_v3" 
         },
         "vmInitialNumber": {
-            "value": 0 // TODO: Fill in parameter value
+            "value": 0
         },
         "vmNumberOfInstances": {
-            "value": 0 // TODO: Fill in parameter value
+            "value": 1 
         },
         "vmNamePrefix": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "WVD-20h2" 
         },
         "vmImageType": {
-            "value": "Gallery"
+            "value": "CustomImage"
         },
         "vmGalleryImageOffer": {
             "value": ""
@@ -69,25 +69,25 @@
             "value": ""
         },
         "vmCustomImageSourceId": {
-            "value": ""
+            "value": "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/WVD-Win10-20h2-O365"
         },
         "vmDiskType": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "StandardSSD_LRS" 
         },
         "vmUseManagedDisks": {
-            "value": false // TODO: Fill in parameter value
+            "value": true 
         },
         "storageAccountResourceGroupName": {
             "value": ""
         },
         "existingVnetName": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "VNET-WVD-WEU" 
         },
         "existingSubnetName": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "SNET-WVD-Research-WEU" 
         },
         "virtualNetworkResourceGroupName": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "RG-WVD-Test" 
         },
         "usePublicIP": {
             "value": false
