@@ -20,10 +20,10 @@ if ($null -eq $sessionHosts) {
     exit;
 }
 
-if ($null -eq $sessionHostsNumber) {
-    $sessionHostsNumber = $sessionHosts.count
-    Write-Host "No sessionHostsNumber provided, creating $sessionHostsNumber hosts"
-}
+#if ($null -eq $sessionHostsNumber) {
+#    $sessionHostsNumber = $sessionHosts.count
+#    Write-Host "No sessionHostsNumber provided, creating $sessionHostsNumber hosts"
+#}
 
 # Get current sessionhost configuration, used in the next steps
 $existingHostName = $sessionHosts[-1].ResourceId.Split("/")[-1]
