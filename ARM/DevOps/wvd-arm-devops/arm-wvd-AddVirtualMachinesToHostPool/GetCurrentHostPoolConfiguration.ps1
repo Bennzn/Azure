@@ -58,5 +58,5 @@ $galleryName = $imageReference.Split("/")[-3]
 $gallery = Get-AzGallery -Name $galleryName
 $latestImageVersion = (Get-AzGalleryImageVersion -ResourceGroupName $gallery.ResourceGroupName -GalleryName $gallery.Name -GalleryImageDefinitionName $galleryImageDefintion.Name)[-1]
 
-Write-Host "$("##vso[task.setvariable variable=vmInitialNumber]") $($vmInitialNumber)"
-Write-Host "$("##vso[task.setvariable variable=prefix]") $($prefix)"
+Write-Host "$("##vso[task.setvariable variable=vmInitialNumber]")$($vmInitialNumber)"
+Write-Host "$("##vso[task.setvariable variable=prefix]")$($prefix)"
