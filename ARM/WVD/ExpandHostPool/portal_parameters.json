@@ -1,0 +1,120 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "artifactsLocation": {
+            "value": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_11-06-2020.zip"
+        },
+        "nestedTemplatesLocation": {
+            "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.Hostpool-ARM-1.0.16-preview/"
+        },
+        "hostpoolName": {
+            "value": "HP-WVD-Win10-20h2"
+        },
+        "hostpoolToken": {
+            "value": null
+        },
+        "administratorAccountUsername": {
+            "value": "adminbenjaming@research.acscloud.it"
+        },
+        "administratorAccountPassword": {
+            "value": null
+        },
+        "hostpoolResourceGroup": {
+            "value": ""
+        },
+        "hostpoolProperties": {
+            "value": {}
+        },
+        "hostpoolLocation": {
+            "value": ""
+        },
+        "createAvailabilitySet": {
+            "value": false
+        },
+        "vmInitialNumber": {
+            "value": 1
+        },
+        "vmResourceGroup": {
+            "value": "RG-WVD-Test"
+        },
+        "vmLocation": {
+            "value": "westeurope"
+        },
+        "vmSize": {
+            "value": "Standard_D2s_v3"
+        },
+        "vmNumberOfInstances": {
+            "value": 1
+        },
+        "vmNamePrefix": {
+            "value": "WVD-20h2"
+        },
+        "vmImageType": {
+            "value": "CustomImage"
+        },
+        "vmDiskType": {
+            "value": "StandardSSD_LRS"
+        },
+        "vmUseManagedDisks": {
+            "value": true
+        },
+        "existingVnetName": {
+            "value": "VNET-WVD-WEU"
+        },
+        "existingSubnetName": {
+            "value": "SNET-WVD-Research-WEU"
+        },
+        "virtualNetworkResourceGroupName": {
+            "value": "RG-WVD-Test"
+        },
+        "createNetworkSecurityGroup": {
+            "value": false
+        },
+        "domain": {
+            "value": ""
+        },
+        "ouPath": {
+            "value": ""
+        },
+        "availabilitySetTags": {
+            "value": {
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
+            }
+        },
+        "networkInterfaceTags": {
+            "value": {
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
+            }
+        },
+        "networkSecurityGroupTags": {
+            "value": {
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
+            }
+        },
+        "virtualMachineTags": {
+            "value": {
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
+            }
+        },
+        "imageTags": {
+            "value": {
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
+            }
+        },
+        "deploymentId": {
+            "value": "53eeafd2-2fff-4560-a0f9-3a61e962704b"
+        },
+        "apiVersion": {
+            "value": "2019-12-10-preview"
+        },
+        "vmCustomImageSourceId": {
+            "value": "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/WVD-Win10-20h2-O365"
+        }
+    }
+}
