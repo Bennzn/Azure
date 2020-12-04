@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "nestedTemplatesLocation": {
-            "value": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_11-06-2020.zip"
+            "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.Hostpool-ARM-1.0.16-preview/"
         },
         "artifactsLocation": {
-            "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.Hostpool-ARM-1.0.16-preview/"
+            "value": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_11-06-2020.zip"
         },
         "hostpoolName": {
             "value": "HP-WVD-Win10-20h2" 
