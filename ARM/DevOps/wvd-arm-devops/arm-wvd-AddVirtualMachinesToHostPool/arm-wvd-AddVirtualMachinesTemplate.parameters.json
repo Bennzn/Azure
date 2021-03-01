@@ -9,31 +9,52 @@
             "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.Hostpool-ARM-1.1.0/"
         },
         "hostpoolName": {
-            "value": "HP-WVD-Win10-20h2" 
+            "value": "HP-WVD-Win10-20h2"
         },
         "hostpoolToken": {
-            "value": "" 
+            "value": null
+        },
+        "vmAdministratorAccountUsername": {
+            "value": "AdminAzure"
+        },
+        "vmAdministratorAccountPassword": {
+            "value": null
+        },
+        "administratorAccountUsername": {
+            "value": "adminbenjaming@research.acscloud.it"
+        },
+        "administratorAccountPassword": {
+            "value": null
         },
         "hostpoolResourceGroup": {
-            "value": ""
-        },
-        "hostpoolLocation": {
             "value": ""
         },
         "hostpoolProperties": {
             "value": {}
         },
-        "vmTemplate": {
-            "value": "{\"domain\":\"research.acscloud.it\",\"galleryImageOffer\":null,\"galleryImagePublisher\":null,\"galleryImageSKU\":null,\"imageType\":\"CustomImage\",\"imageUri\":null,\"customImageId\":\"/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/WVD-Win10-20h2-O365\",\"namePrefix\":\"WVD-20h2\",\"osDiskType\":\"StandardSSD_LRS\",\"useManagedDisks\":true,\"vmSize\":{\"id\":\"Standard_D2s_v3\",\"cores\":2,\"ram\":8},\"galleryItemId\":null}"
-        },	
-        "administratorAccountUsername": {
-            "value": "" 
+        "hostpoolLocation": {
+            "value": ""
         },
-        "administratorAccountPassword": {
-            "value": "" 
+        "availabilityOption": {
+            "value": "AvailabilitySet"
+        },
+        "availabilitySetName": {
+            "value": "WVD-20h2-availabilitySet-westeurope"
         },
         "createAvailabilitySet": {
-            "value": false 
+            "value": false
+        },
+        "availabilitySetUpdateDomainCount": {
+            "value": 5
+        },
+        "availabilitySetFaultDomainCount": {
+            "value": 2
+        },
+        "availabilityZone": {
+            "value": 1
+        },
+        "vmInitialNumber": {
+            "value": 2
         },
         "vmResourceGroup": {
             "value": "RG-WVD-Test"
@@ -42,61 +63,46 @@
             "value": "westeurope"
         },
         "vmSize": {
-            "value": "Standard_D2s_v3" 
-        },
-        "vmInitialNumber": {
-            "value": 0
+            "value": "Standard_D2s_v3"
         },
         "vmNumberOfInstances": {
-            "value": 1 
+            "value": 1
         },
         "vmNamePrefix": {
-            "value": "" 
+            "value": "WVD-20h2"
         },
         "vmImageType": {
             "value": "CustomImage"
         },
-        "vmGalleryImageOffer": {
-            "value": ""
-        },
-        "vmGalleryImagePublisher": {
-            "value": ""
-        },
-        "vmGalleryImageSKU": {
-            "value": ""
-        },
-        "vmImageVhdUri": {
-            "value": ""
-        },
-        "vmCustomImageSourceId": {
-            "value": "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/WVD-Win10-20h2-O365"
-        },
         "vmDiskType": {
-            "value": "StandardSSD_LRS" 
+            "value": "StandardSSD_LRS"
         },
         "vmUseManagedDisks": {
-            "value": true 
-        },
-        "storageAccountResourceGroupName": {
-            "value": ""
+            "value": true
         },
         "existingVnetName": {
-            "value": "VNET-WVD-WEU" 
+            "value": "VNET-WVD-WEU"
         },
         "existingSubnetName": {
-            "value": "SNET-WVD-Research-WEU" 
+            "value": "SNET-WVD-Research-WEU"
         },
         "virtualNetworkResourceGroupName": {
-            "value": "RG-WVD-Test" 
+            "value": "RG-WVD-Test"
         },
         "createNetworkSecurityGroup": {
             "value": false
         },
-        "networkSecurityGroupId": {
+        "domain": {
             "value": ""
         },
-        "networkSecurityGroupRules": {
-            "value": []
+        "ouPath": {
+            "value": ""
+        },
+        "aadJoin": {
+            "value": false
+        },
+        "intune": {
+            "value": false
         },
         "availabilitySetTags": {
             "value": {}
@@ -119,11 +125,8 @@
         "apiVersion": {
             "value": "2019-12-10-preview"
         },
-        "ouPath": {
-            "value": ""
-        },
-        "domain": {
-            "value": ""
+        "vmCustomImageSourceId": {
+            "value": "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/WVD-Win10-20h2-O365"
         }
     }
 }
