@@ -1,62 +1,79 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-							  
-																													   
-		  
-        "nestedTemplatesLocation": {
-            "value": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/nestedtemplates/"
-        },
         "artifactsLocation": {
-            "value": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/DSC/Configuration.zip"
+            "value": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_1-25-2021.zip"
+        },
+        "nestedTemplatesLocation": {
+            "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.Hostpool-ARM-1.1.0/"
         },
         "hostpoolName": {
-            "value": "HP-WVD-Win10-20h2"
-        },
-        "hostpoolFriendlyName": {
-            "value": "Win10 20h2 Pooled"
+            "value": "HP-DO-20h2"
         },
         "hostpoolDescription": {
-            "value": "Created through DevOps Pipeline"
+            "value": "Created through the WVD extension"
         },
         "location": {
-            "value": "eastus"
-		  
+            "value": "westeurope"
         },
-        "workSpaceName": {
-            "value": ""
-        },
-        "workspaceLocation": {
-            "value": ""
-        },
-        "workspaceResourceGroup": {
-            "value": ""
-        },
-        "allApplicationGroupReferences": {
-            "value": ""
+        "validationEnvironment": {
+            "value": false
         },
         "addToWorkspace": {
-            "value": false
+            "value": true
+        },
+        "hostpoolType": {
+            "value": "Pooled"
+        },
+        "loadBalancerType": {
+            "value": "BreadthFirst"
+        },
+        "customRdpProperty": {
+            "value": ""
+        },
+        "vmTemplate": {
+            "value": "{\"domain\":\"research.acscloud.it\",\"galleryImageOffer\":\"office-365\",\"galleryImagePublisher\":\"MicrosoftWindowsDesktop\",\"galleryImageSKU\":\"20h2-evd-o365pp\",\"imageType\":\"Gallery\",\"imageUri\":null,\"customImageId\":null,\"namePrefix\":\"DO-20h2\",\"osDiskType\":\"StandardSSD_LRS\",\"useManagedDisks\":true,\"vmSize\":{\"id\":\"Standard_D2s_v3\",\"cores\":2,\"ram\":8},\"galleryItemId\":\"microsoftwindowsdesktop.office-36520h2-evd-o365pp\"}"
+        },
+        "tokenExpirationTime": {
+            "value": "2021-03-09T13:01:29.213Z"
+        },
+        "vmAdministratorAccountUsername": {
+            "value": "AdminAzure"
+        },
+        "vmAdministratorAccountPassword": {
+            "value": null
         },
         "administratorAccountUsername": {
             "value": "adminbenjaming@research.acscloud.it"
         },
         "administratorAccountPassword": {
+            "value": null
+        },
+        "availabilityOption": {
+            "value": "None"
+        },
+        "availabilitySetName": {
             "value": ""
         },
         "createAvailabilitySet": {
-            "value": true
+            "value": false
+        },
+        "availabilitySetUpdateDomainCount": {
+            "value": 5
+        },
+        "availabilitySetFaultDomainCount": {
+            "value": 2
+        },
+        "availabilityZone": {
+            "value": 1
         },
         "vmResourceGroup": {
-            "value": "RG-WVD-Test"
+            "value": ""
         },
         "vmLocation": {
             "value": "westeurope"
         },
-        "vmTemplate": {
-            "value": "{\"domain\":\"research.acscloud.it\",\"galleryImageOffer\":null,\"galleryImagePublisher\":null,\"galleryImageSKU\":null,\"imageType\":\"CustomImage\",\"imageUri\":null,\"customImageId\":\"/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/WVD-Win10-20h2-O365\",\"namePrefix\":\"WVD-20h2\",\"osDiskType\":\"StandardSSD_LRS\",\"useManagedDisks\":true,\"vmSize\":{\"id\":\"Standard_D2s_v3\",\"cores\":2,\"ram\":8},\"galleryItemId\":null}"
-        },		
         "vmSize": {
             "value": "Standard_D2s_v3"
         },
@@ -64,19 +81,16 @@
             "value": 1
         },
         "vmNamePrefix": {
-            "value": "WVD-20h2"
+            "value": "DO-20h2"
         },
         "vmImageType": {
-            "value": "CustomImage"
+            "value": "Gallery"
         },
         "vmDiskType": {
             "value": "StandardSSD_LRS"
         },
         "vmUseManagedDisks": {
             "value": true
-        },
-        "storageAccountResourceGroupName": {
-            "value": ""
         },
         "existingVnetName": {
             "value": "VNET-WVD-WEU"
@@ -87,85 +101,91 @@
         "virtualNetworkResourceGroupName": {
             "value": "RG-WVD-Test"
         },
-        "usePublicIP": {
-            "value": false
-        },
-        "publicIpAddressSku": {
-            "value": "Basic"
-        },
-        "publicIpAddressType": {
-            "value": "Dynamic"
-        },
         "createNetworkSecurityGroup": {
             "value": false
         },
-        "networkSecurityGroupId": {
+        "domain": {
             "value": ""
-        },
-        "networkSecurityGroupRules": {
-            "value": []
-        },
-        "hostpoolType": {
-            "value": "Pooled"
-        },
-        "personalDesktopAssignmentType": {
-            "value": ""
-        },
-        "maxSessionLimit": {
-            "value": 4
-        },
-        "loadBalancerType": {
-            "value": "BreadthFirst"
-        },
-        "customRdpProperty": {
-            "value": ""
-        },
-        "tokenExpirationTime": {
-            "value": ""
-        },
-        "hostpoolTags": {
-            "value": {}
-        },
-        "applicationGroupTags": {
-            "value": {}
-        },
-        "availabilitySetTags": {
-            "value": {}
-        },
-        "networkInterfaceTags": {
-            "value": {}
-        },
-        "networkSecurityGroupTags": {
-            "value": {}
-        },
-        "publicIPAddressTags": {
-            "value": {}
-        },
-        "virtualMachineTags": {
-            "value": {}
-        },
-        "imageTags": {
-            "value": {}
-        },
-        "apiVersion": {
-            "value": "2019-12-10-preview"
-        },
-        "vmCustomImageSourceId": {
-            "value": "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/WVD-Win10-20h2-O365"
-        },
-        "deploymentId": {
-            "value": ""
-        },
-        "validationEnvironment": {
-            "value": false
-        },
-        "preferredAppGroupType": {
-            "value": "Desktop"
         },
         "ouPath": {
             "value": ""
         },
-        "domain": {
+        "aadJoin": {
+            "value": false
+        },
+        "intune": {
+            "value": false
+        },
+        "hostpoolTags": {
+            "value": {
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
+            }
+        },
+        "applicationGroupTags": {
+            "value": {
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
+            }
+        },
+        "availabilitySetTags": {
+            "value": {
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
+            }
+        },
+        "networkInterfaceTags": {
+            "value": {
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
+            }
+        },
+        "networkSecurityGroupTags": {
+            "value": {
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
+            }
+        },
+        "virtualMachineTags": {
+            "value": {
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
+            }
+        },
+        "imageTags": {
+            "value": {
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
+            }
+        },
+        "apiVersion": {
+            "value": "2019-12-10-preview"
+        },
+        "deploymentId": {
+            "value": "390c857e-8b26-4142-a40d-38924021202d"
+        },
+        "vmGalleryImageOffer": {
+            "value": "office-365"
+        },
+        "vmGalleryImagePublisher": {
+            "value": "MicrosoftWindowsDesktop"
+        },
+        "vmGalleryImageSKU": {
+            "value": "20h2-evd-o365pp"
+        },
+        "maxSessionLimit": {
+            "value": 4
+        },
+        "workspaceResourceGroup": {
+            "value": "RG-WVD-T2"
+        },
+        "workspaceName": {
+            "value": "WS-DO-20h2"
+        },
+        "workspaceLocation": {
+            "value": "westeurope"
+        },
+        "allApplicationGroupReferences": {
             "value": ""
         }
     }
