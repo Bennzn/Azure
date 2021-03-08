@@ -52,11 +52,18 @@ Write-Host "Current virtualNetworkSubnet is $virtualNetworkSubnet"
 # Get the image gallery information for getting latest image
 $imageReference = ($currentVmInfo.storageprofile.ImageReference).id
 Write-Host "Current imageReference is $imageReference"
-$galleryImageDefintion = get-AzGalleryImageDefinition -ResourceId $imageReference
-#Write-Host "Current galleryImageDefintion is $galleryImageDefintion"
-$galleryName = $imageReference.Split("/")[-3]
-$gallery = Get-AzGallery -Name $galleryName
-$latestImageVersion = (Get-AzGalleryImageVersion -ResourceGroupName $gallery.ResourceGroupName -GalleryName $gallery.Name -GalleryImageDefinitionName $galleryImageDefintion.Name)[-1]
+
+if (!$imageReference){
+    Write-Host "Current imageReference not available!"
+} else {
+
+    $galleryImageDefintion = get-AzGalleryImageDefinition -ResourceId $imageReference
+    #Write-Host "Current galleryImageDefintion is $galleryImageDefintion"
+    $galleryName = $imageReference.Split("/")[-3]
+    $gallery = Get-AzGallery -Name $galleryName
+    $latestImageVersion = (Get-AzGalleryImageVersion -ResourceGroupName $gallery.ResourceGroupName -GalleryName $gallery.Name -GalleryImageDefinitionName $galleryImageDefintion.Name)[-1]
+
+}
 
 Write-Host "$("##vso[task.setvariable variable=vmInitialNumber]")$($vmInitialNumber)"
 Write-Host "$("##vso[task.setvariable variable=prefix]")$($prefix)"
