@@ -3,13 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "artifactsLocation": {
-            "value": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_1-25-2021.zip"
+            "value": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_3-10-2021.zip"
         },
         "nestedTemplatesLocation": {
-            "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.Hostpool-ARM-1.1.0/"
+            "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.Hostpool-ARM-1.4.0/"
         },
         "hostpoolName": {
-            "value": "HP-DO-20h2"
+            "value": "HP-WVD-Win10-20h2"
         },
         "hostpoolToken": {
             "value": null
@@ -69,10 +69,10 @@
             "value": 1
         },
         "vmNamePrefix": {
-            "value": "DO-20h2"
+            "value": "WVD-20h2"
         },
         "vmImageType": {
-            "value": "Gallery"
+            "value": "CustomImage"
         },
         "vmDiskType": {
             "value": "StandardSSD_LRS"
@@ -104,50 +104,49 @@
         "intune": {
             "value": false
         },
+        "bootDiagnostics": {
+            "value": {
+                "enabled": false
+            }
+        },
         "availabilitySetTags": {
             "value": {
-                "Responsible": "BenjaminG",
-                "Project": "WVD"
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
             }
         },
         "networkInterfaceTags": {
             "value": {
-                "Responsible": "BenjaminG",
-                "Project": "WVD"
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
             }
         },
         "networkSecurityGroupTags": {
             "value": {
-                "Responsible": "BenjaminG",
-                "Project": "WVD"
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
             }
         },
         "virtualMachineTags": {
             "value": {
-                "Responsible": "BenjaminG",
-                "Project": "WVD"
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
             }
         },
         "imageTags": {
             "value": {
-                "Responsible": "BenjaminG",
-                "Project": "WVD"
+                "Project": "WVD",
+                "Responsible": "BenjaminG"
             }
         },
         "deploymentId": {
-            "value": "2edf1f31-0bf2-441e-9520-5f037fd12094"
+            "value": "0df0e7a9-eaca-4c10-ad42-01191a45b04b"
         },
         "apiVersion": {
             "value": "2019-12-10-preview"
         },
-        "vmGalleryImageOffer": {
-            "value": "office-365"
-        },
-        "vmGalleryImagePublisher": {
-            "value": "MicrosoftWindowsDesktop"
-        },
-        "vmGalleryImageSKU": {
-            "value": "20h2-evd-o365pp"
+        "vmCustomImageSourceId": {
+            "value": "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-ImageBuilder/providers/Microsoft.Compute/galleries/imagebuilder_sig/images/WVD-Win10-20h2-O365"
         }
     }
 }
