@@ -18,13 +18,23 @@
             "value": "AdminAzure"
         },
         "vmAdministratorAccountPassword": {
-            "value": null
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-Test/providers/Microsoft.KeyVault/vaults/WVD-AKV"
+                },
+                "secretName": "WVD-LocalA"
+            }
         },
         "administratorAccountUsername": {
             "value": "adminbenjaming@research.acscloud.it"
         },
         "administratorAccountPassword": {
-            "value": null
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-Test/providers/Microsoft.KeyVault/vaults/WVD-AKV"
+                },
+                "secretName": "wvd-ad-join"
+            }
         },
         "hostpoolResourceGroup": {
             "value": ""
