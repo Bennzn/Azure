@@ -114,11 +114,6 @@
         "intune": {
             "value": false
         },
-        "bootDiagnostics": {
-            "value": {
-                "enabled": false
-            }
-        },
         "availabilitySetTags": {
             "value": {
                 "Project": "WVD",
