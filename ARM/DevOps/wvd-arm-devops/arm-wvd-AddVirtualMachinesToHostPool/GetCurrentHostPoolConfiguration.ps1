@@ -8,7 +8,7 @@ import-module az.resources
 $existingWVDHostPoolName = $args[0]
 #$existingResourceGroup = $args[0]
 #$existingWVDHostPoolName = "HP-WVD-Win10-20h2"
-$existingResourceGroup = "RG-WVD-Test"
+#$existingResourceGroup = "RG-WVD-Test"
 
 # Get the hostpool information
 $hostpool = Get-AzWvdHostPool | ? { $_.Name -eq $existingWVDHostPoolName }
