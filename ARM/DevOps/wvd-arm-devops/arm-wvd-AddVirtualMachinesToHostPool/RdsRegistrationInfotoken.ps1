@@ -26,9 +26,6 @@ if ((-Not $Registered.Token) -or ($Registered.ExpirationTime -le (get-date)))
     $Registered = New-AzWvdRegistrationInfo -SubscriptionId $azureSubscriptionID -ResourceGroupName $resourceGroupName -HostPoolName $existingWVDHostPoolName -ExpirationTime (Get-Date).AddHours(4) -ErrorAction SilentlyContinue
 }
 $RdsRegistrationInfotoken = $Registered.Token
-$hostPoolToken = (ConvertTo-SecureString -AsPlainText -Force $RdsRegistrationInfotoken)
 
 # Write Host task.setvariable 
-Write-Host "HostPool Token is $RdsRegistrationInfotoken"
-Write-Host "$("##vso[task.setvariable variable=RdsRegistrationInfotoken]") $($RdsRegistrationInfotoken)"
-Write-Host "$("##vso[task.setvariable variable=hostPoolToken]") $($hostPoolToken)"
+Write-Host "##vso[task.setvariable variable=RdsRegistrationInfotoken;]$RdsRegistrationInfotoken"
