@@ -1,0 +1,68 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westeurope"
+        },
+        "networkInterfaceName": {
+            "value": "msix-01429"
+        },
+        "networkSecurityGroupName": {
+            "value": "MSIX-01-nsg"
+        },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                    "name": "RDP",
+                    "properties": {
+                        "priority": 300,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "3389"
+                    }
+                }
+            ]
+        },
+        "subnetName": {
+            "value": "SNET-WVD-Research-WEU"
+        },
+        "virtualNetworkId": {
+            "value": "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-Test/providers/Microsoft.Network/virtualNetworks/VNET-WVD-WEU"
+        },
+        "publicIpAddressName": {
+            "value": "MSIX-01-ip"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },
+        "virtualMachineName": {
+            "value": "MSIX-01"
+        },
+        "virtualMachineComputerName": {
+            "value": "MSIX-01"
+        },
+        "virtualMachineRG": {
+            "value": "RG-AVD-MSIX"
+        },
+        "osDiskType": {
+            "value": "StandardSSD_LRS"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_D2s_v3"
+        },
+        "adminUsername": {
+            "value": "AdminAzure"
+        },
+        "adminPassword": {
+            "value": null
+        }
+    }
+}
