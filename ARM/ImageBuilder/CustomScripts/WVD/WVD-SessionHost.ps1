@@ -236,6 +236,7 @@ If ($Optimize -eq $true) {
     $LocalOptimizePath = "C:\Optimize\"
     $WVDOptimizeURL = 'https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool/archive/refs/heads/main.zip'
     $WVDOptimizeInstaller = "Windows_10_VDI_Optimize-master.zip"
+    Write-Output "Downloading Optimizer Script"  
     Invoke-WebRequest `
         -Uri $WVDOptimizeURL `
         -OutFile "$LocalOptimizePath$WVDOptimizeInstaller"
@@ -250,14 +251,16 @@ If ($Optimize -eq $true) {
         -DestinationPath "$LocalOptimizePath" `
         -Force `
         -Verbose
-    Set-Location -Path C:\Optimize\Virtual-Desktop-Optimization-Tool-master
+    Set-Location -Path C:\Optimize\Virtual-Desktop-Optimization-Tool-main
 
 
     #################################
     #    Run WVD Optimize Script    #
     #################################
     Add-Content -LiteralPath C:\New-WVDSessionHost.log "Begining Optimize"
-    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force -Verbose
+    Write-Output "Setting Execution Policy"  
+    Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope MachinePolicy -Force -Verbose
+    Write-Output "Starting Optimization"  
     .\Win10_VirtualDesktop_Optimize.ps1 -WindowsVersion 2009 -Verbose
     Add-Content -LiteralPath C:\New-WVDSessionHost.log "Optimization Complete"
 }
