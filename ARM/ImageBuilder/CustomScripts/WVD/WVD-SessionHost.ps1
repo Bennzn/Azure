@@ -221,6 +221,15 @@ Write-Host '*** WVD AIB CUSTOMIZER PHASE *** CONFIG TEAMS *** Configure Teams to
 New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run -Name Teams -PropertyType Binary -Value ([byte[]](0x01,0x00,0x00,0x00,0x1a,0x19,0xc3,0xb9,0x62,0x69,0xd5,0x01)) -Force
 Start-Sleep -Seconds 30
 
+#####################################################################################
+#### Fix "Please wait for the Windows Modules Installer" Sysprep Problem ############
+#####################################################################################
+
+
+Write-Host '*** Change Sysprep Parameters with /mode:vm ***'
+((Get-Content -path C:\DeprovisioningScript.ps1 -Raw) -replace 'Sysprep.exe /oobe /generalize /quiet /quit','Sysprep.exe /oobe /generalize /quit /mode:vm' ) | Set-Content -Path C:\DeprovisioningScript.ps1
+
+
 
 ##############################################
 #    WVD Optimizer (Virtual Desktop Team)    #
