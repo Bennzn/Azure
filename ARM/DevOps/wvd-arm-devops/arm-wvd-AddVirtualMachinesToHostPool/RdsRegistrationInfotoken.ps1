@@ -10,14 +10,14 @@ import-module az.compute
 #$resourceGroupName = "0"
 #$existingWVDHostPoolName = "0"
 
-$azureSubscriptionID = $args[0]
-$resourceGroupName = $args[1]
-$existingWVDHostPoolName = $args[2]
+#$azureSubscriptionID = $args[0]
+$resourceGroupName = $args[0]
+$existingWVDHostPoolName = $args[1]
 
 
 #Obtain RdsRegistrationInfotoken
 
-$Registered = Get-AzWvdRegistrationInfo -SubscriptionId "$azureSubscriptionID" -ResourceGroupName "$resourceGroupName" -HostPoolName $existingWVDHostPoolName
+$Registered = Get-AzWvdRegistrationInfo -ResourceGroupName "$resourceGroupName" -HostPoolName $existingWVDHostPoolName
 if (-not(-Not $Registered.Token)){$registrationTokenValidFor = (NEW-TIMESPAN -Start (get-date) -End $Registered.ExpirationTime | select Days,Hours,Minutes,Seconds)}
 
 $registrationTokenValidFor
