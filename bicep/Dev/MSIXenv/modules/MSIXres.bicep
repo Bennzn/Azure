@@ -1,17 +1,17 @@
 param location string = 'westeurope'
 param networkInterfaceName string = '${virtualMachineName}-nic'
 param networkSecurityGroupName string = '${virtualMachineName}-nsg'
-param networkSecurityGroupRules array
-param subnetName string
-param virtualNetworkId string
-param publicIpAddressName string
-param publicIpAddressType string
-param publicIpAddressSku string
-param virtualMachineName string
-param virtualMachineComputerName string
-param virtualMachineRG string
-param osDiskType string
-param virtualMachineSize string
+//param networkSecurityGroupRules array 
+param subnetName string = 'SNET-WVD-Research-WEU'
+param virtualNetworkId string = '/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-Test/providers/Microsoft.Network/virtualNetworks/VNET-WVD-WEU'
+param publicIpAddressName string = '${virtualMachineName}-pip'
+param publicIpAddressType string = 'dynamic'
+param publicIpAddressSku string = 'Basic'
+param virtualMachineName string = 'MSIX-01'
+param virtualMachineComputerName string = 'MSIX-01'
+//param virtualMachineRG string
+param osDiskType string = 'StandardSSD_LRS'
+param virtualMachineSize string = 'Standard_D2_v2'
 @secure()
 param localAdmin string
 
@@ -44,6 +44,11 @@ resource networkInterfaceName_resource 'Microsoft.Network/networkInterfaces@2018
     networkSecurityGroup: {
       id: nsgId
     }
+    dnsSettings: {
+      dnsServers: [
+        '1.1.1.1'
+      ]
+    }
   }
   dependsOn: [
     networkSecurityGroupName_resource
@@ -55,7 +60,35 @@ resource networkSecurityGroupName_resource 'Microsoft.Network/networkSecurityGro
   name: networkSecurityGroupName
   location: location
   properties: {
-    securityRules: networkSecurityGroupRules
+    //securityRules: networkSecurityGroupRules
+    securityRules: [
+      {
+        name: 'RDP'
+        properties: {
+          priority: 300
+          protocol: 'Tcp'
+          access: 'Allow'
+          direction: 'Inbound'
+          sourceAddressPrefix: '*'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '3389'
+        }
+      }
+      {
+        name: 'Allow_ResearchNetwork'
+        properties: {
+          priority: 310
+          protocol: '*'
+          access: 'Allow'
+          direction: 'Inbound'
+          sourceAddressPrefix: '10.105.10.0/24'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '*'
+        }
+      }
+    ]
   }
 }
 
@@ -111,4 +144,4 @@ resource virtualMachineName_resource 'Microsoft.Compute/virtualMachines@2021-03-
   }
 }
 
-output adminUsername string = adminUsername
+output localAdmin string = localAdmin
