@@ -3,11 +3,11 @@
 
 
 # Variables
-$DiskID = "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-WVD-TEST/providers/Microsoft.Compute/disks/VM-FRA_disk1_577d7f87cec34c879a28f4af920855b7"
-$VMName = "VM-FRA"
-$DiskSizeGB = 32
+$DiskID = "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG-MEM-WUS/providers/Microsoft.Compute/disks/DC01_OSDisk"
+$VMName = "DC01"
+$DiskSizeGB = 64
 $AzSubscription = "Microsoft Partner Network"
-$accountType = "Standard_LRS" # Type of the new Disk
+$accountType = "StandardSSD_LRS" # Type of the new Disk
 
 # Script
 # Provide your Azure admin credentials
