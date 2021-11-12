@@ -56,14 +56,14 @@
         },
         "virtualMachineName": {
             "type": "string",
-            "defaultValue": "adVM",
+            "defaultValue": "DC01",
             "metadata": {
                 "description": "Virtual machine name."
             }
         },
         "virtualNetworkName": {
             "type": "string",
-            "defaultValue": "adVNET",
+            "defaultValue": "VNET-",
             "metadata": {
                 "description": "Virtual network name."
             }
@@ -77,28 +77,28 @@
         },
         "loadBalancerFrontEndIPName": {
             "type": "string",
-            "defaultValue": "LBFE",
+            "defaultValue": "LBFE-DC01",
             "metadata": {
                 "description": "Load balancer front end IP address name."
             }
         },
         "backendAddressPoolName": {
             "type": "string",
-            "defaultValue": "LBBE",
+            "defaultValue": "LBBE-DC01",
             "metadata": {
                 "description": "Backend address pool name."
             }
         },
         "inboundNatRulesName": {
             "type": "string",
-            "defaultValue": "adRDP",
+            "defaultValue": "DC01-Allow-RDP",
             "metadata": {
                 "description": "Inbound NAT rules name."
             }
         },
         "networkInterfaceName": {
             "type": "string",
-            "defaultValue": "adNic",
+            "defaultValue": "NIC-DC01",
             "metadata": {
                 "description": "Network interface name."
             }
@@ -112,7 +112,7 @@
         },
         "subnetName": {
             "type": "string",
-            "defaultValue": "adSubnet",
+            "defaultValue": "SNET-",
             "metadata": {
                 "description": "Subnet name."
             }
@@ -126,21 +126,21 @@
         },
         "publicIPAddressName": {
             "type": "string",
-            "defaultValue": "adPublicIP",
+            "defaultValue": "PIP-DC01",
             "metadata": {
                 "description": "Subnet IP range."
             }
         },
         "availabilitySetName": {
             "type": "string",
-            "defaultValue": "adAvailabiltySet",
+            "defaultValue": "AS-DC01",
             "metadata": {
                 "description": "Availability set name."
             }
         },
         "loadBalancerName": {
             "type": "string",
-            "defaultValue": "adLoadBalancer",
+            "defaultValue": "LB-DC01",
             "metadata": {
                 "description": "Load balancer name."
             }
@@ -301,7 +301,7 @@
                     "imageReference": {
                         "publisher": "MicrosoftWindowsServer",
                         "offer": "WindowsServer",
-                        "sku": "2016-Datacenter",
+                        "sku": "2019-Datacenter",
                         "version": "latest"
                     },
                     "osDisk": {
