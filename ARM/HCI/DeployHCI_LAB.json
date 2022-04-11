@@ -450,11 +450,6 @@
                             "storageAccountType": "Standard_LRS"
                         }
                     },
-                    "priority": "Spot",
-                    "evictionPolicy": "Deallocate",
-                    "billingProfile": {
-                        "maxPrice": -1
-                    },
                     "copy": [
                         {
                             "name": "dataDisks",
@@ -472,6 +467,11 @@
                         }
                     ]
                 },
+                "priority": "Spot",
+                    "evictionPolicy": "Deallocate",
+                    "billingProfile": {
+                        "maxPrice": -1
+                    },
                 "networkProfile": {
                     "networkInterfaces": [
                         {
