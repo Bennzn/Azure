@@ -7,7 +7,7 @@ $DiskID = "/subscriptions/157f3366-50f1-48c4-bae0-17de1998d98f/resourceGroups/RG
 $VMName = "DC01"
 $DiskSizeGB = 64
 $AzSubscription = "Microsoft Partner Network"
-$accountType = "StandardSSD_LRS" # Type of the new Disk
+$accountType = "Standard_LRS" # Type of the new Disk Standard_LRS, StandardSSD_LRS, Premium_LRS
 
 # Script
 # Provide your Azure admin credentials
@@ -41,7 +41,7 @@ $SAS = Grant-AzDiskAccess -ResourceGroupName $resourceGroupName -DiskName $DiskN
 #$sasExpiryDuration = "3600"
 
 #Provide storage account name where you want to copy the snapshot - the script will create a new one temporarily
-$storageAccountName = "sashrinkddisk" + ($($VMName -replace '[^a-zA-Z0-9]', '')).ToLower()
+$storageAccountName = "sashrinkddisk987" + ($($VMName -replace '[^a-zA-Z0-9]', '')).ToLower()
 
 #Name of the storage container where the downloaded snapshot will be stored
 $storageContainerName = $storageAccountName
