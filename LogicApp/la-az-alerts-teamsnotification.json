@@ -1,0 +1,465 @@
+{
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "contentVersion": "1.0.0.0",
+    "triggers": {
+      "When_a_HTTP_request_is_received": {
+        "type": "Request",
+        "kind": "Http",
+        "inputs": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "schemaId": {
+                "type": "string"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "essentials": {
+                    "type": "object",
+                    "properties": {
+                      "alertId": {
+                        "type": "string"
+                      },
+                      "alertRule": {
+                        "type": "string"
+                      },
+                      "severity": {
+                        "type": "string"
+                      },
+                      "signalType": {
+                        "type": "string"
+                      },
+                      "monitorCondition": {
+                        "type": "string"
+                      },
+                      "monitoringService": {
+                        "type": "string"
+                      },
+                      "alertTargetIDs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "configurationItems": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "originAlertId": {
+                        "type": "string"
+                      },
+                      "firedDateTime": {
+                        "type": "string"
+                      },
+                      "resolvedDateTime": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "essentialsVersion": {
+                        "type": "string"
+                      },
+                      "alertContextVersion": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "alertContext": {
+                    "type": "object",
+                    "properties": {
+                      "authorization": {
+                        "type": "object",
+                        "properties": {
+                          "action": {
+                            "type": "string"
+                          },
+                          "scope": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "channels": {
+                        "type": "string"
+                      },
+                      "claims": {
+                        "type": "string"
+                      },
+                      "caller": {
+                        "type": "string"
+                      },
+                      "correlationId": {
+                        "type": "string"
+                      },
+                      "eventSource": {
+                        "type": "string"
+                      },
+                      "eventTimestamp": {
+                        "type": "string"
+                      },
+                      "eventDataId": {
+                        "type": "string"
+                      },
+                      "level": {
+                        "type": "string"
+                      },
+                      "operationName": {
+                        "type": "string"
+                      },
+                      "operationId": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "subStatus": {
+                        "type": "string"
+                      },
+                      "submissionTimestamp": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customProperties": {
+                    "type": "object",
+                    "properties": {
+                      "CustomerID": {
+                        "type": "string"
+                      },
+                      "CustomerType": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "actions": {
+      "Compose": {
+        "type": "Compose",
+        "inputs": "@addProperty(variables('AlertJSON'),'CustomerID','987654')",
+        "runAfter": {
+          "Initialize_variable": [
+            "Succeeded"
+          ]
+        }
+      },
+      "Initialize_variable": {
+        "type": "InitializeVariable",
+        "inputs": {
+          "variables": [
+            {
+              "name": "AlertJSON",
+              "type": "object",
+              "value": "@triggerBody()"
+            }
+          ]
+        },
+        "runAfter": {}
+      },
+      "HTTP": {
+        "type": "Http",
+        "inputs": {
+          "uri": "https://webhook-test.com/f3a3805b2fb315256594c5e8664e26a6",
+          "method": "POST",
+          "body": "@outputs('Compose')"
+        },
+        "runAfter": {
+          "Compose": [
+            "Succeeded"
+          ]
+        },
+        "runtimeConfiguration": {
+          "contentTransfer": {
+            "transferMode": "Chunked"
+          }
+        }
+      },
+      "check_Monitoring_Service": {
+        "type": "Switch",
+        "expression": "@body('Parse_JSON')?['data']?['essentials']?['monitoringService']",
+        "default": {
+          "actions": {
+            "Post_message_Teams_Default": {
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['teams']['connectionId']"
+                  }
+                },
+                "method": "post",
+                "body": {
+                  "recipient": {
+                    "groupId": "5228ab96-6b2e-46b2-932d-7dff264d2386",
+                    "channelId": "19:71b925e0bbe4473ea27e7acd71feff2b@thread.tacv2"
+                  },
+                  "messageBody": "<p><u><b><strong style=\"color: rgb(241, 7, 7); font-size: 17px;\">Azure Monitor Alert</strong></b></u><br><br><b><strong>Customer: </strong></b>@{body('Parse_JSON')?['CustomerID']}<br><br>Alert: @{body('Parse_JSON')?['data']?['essentials']?['alertRule']}<br>Severity: @{body('Parse_JSON')?['data']?['essentials']?['severity']}<br>SignalType: @{body('Parse_JSON')?['data']?['essentials']?['signalType']}</p><p>EventTitle:@{body('Parse_JSON')?['data']?['alertContext']?['properties']?['title']}</p><p>Cause: @{body('Parse_JSON')?['data']?['alertContext']?['properties']?['cause']}<br><br>EventSource: @{body('Parse_JSON')?['data']?['alertContext']?['eventSource']}<br>eventTimeStamp:@{body('Parse_JSON')?['data']?['alertContext']?['eventTimestamp']}<br>Level: @{body('Parse_JSON')?['data']?['alertContext']?['level']}<br>Operation: @{body('Parse_JSON')?['data']?['alertContext']?['operationName']}<br>Status: @{body('Parse_JSON')?['data']?['alertContext']?['status']}</p><br><br><br>"
+                },
+                "path": "/beta/teams/conversation/message/poster/Flow bot/location/@{encodeURIComponent('Channel')}"
+              }
+            }
+          }
+        },
+        "cases": {
+          "platform": {
+            "actions": {
+              "For_each": {
+                "type": "Foreach",
+                "foreach": "@outputs('Parse_JSON')?['body']?['data']?['alertContext']?['condition']?['allOf']",
+                "actions": {
+                  "Post_message_in_a_chat_or_channel": {
+                    "type": "ApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connection": {
+                          "name": "@parameters('$connections')['teams']['connectionId']"
+                        }
+                      },
+                      "method": "post",
+                      "body": {
+                        "recipient": {
+                          "groupId": "5228ab96-6b2e-46b2-932d-7dff264d2386",
+                          "channelId": "19:71b925e0bbe4473ea27e7acd71feff2b@thread.tacv2"
+                        },
+                        "messageBody": "<p>Azure Monitor Azure Monitor Alert<br><br>Customer: @{body('Parse_JSON')?['data']?['CustomerID']}<br><br>Alert: @{body('Parse_JSON')?['data']?['essentials']?['alertRule']}<br>Severity: @{body('Parse_JSON')?['data']?['essentials']?['severity']}<br>SignalType: @{body('Parse_JSON')?['data']?['essentials']?['signalType']}</p><p>Condition: @{body('Parse_JSON')?['data']?['essentials']?['monitorCondition']}</p><br><p>Metric: @{items('For_each')?['metricName']}</p><p>Operator: @{items('For_each')?['operator']}</p><p>Threshold: @{items('For_each')?['threshold']}</p><p>Value: @{items('For_each')?['metricValue']}</p>"
+                      },
+                      "path": "/beta/teams/conversation/message/poster/Flow bot/location/@{encodeURIComponent('Channel')}"
+                    }
+                  }
+                }
+              }
+            },
+            "case": "platform"
+          },
+          "activity_log": {
+            "actions": {
+              "For_each_1": {
+                "type": "Foreach",
+                "foreach": "@outputs('Parse_JSON')?['body']?['data']?['essentials']?['configurationItems']",
+                "actions": {
+                  "Post_message_Teams_Activty": {
+                    "type": "ApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connection": {
+                          "name": "@parameters('$connections')['teams']['connectionId']"
+                        }
+                      },
+                      "method": "post",
+                      "body": {
+                        "recipient": {
+                          "groupId": "5228ab96-6b2e-46b2-932d-7dff264d2386",
+                          "channelId": "19:71b925e0bbe4473ea27e7acd71feff2b@thread.tacv2"
+                        },
+                        "messageBody": "<p><u><b><strong style=\"color: rgb(241, 7, 7); font-size: 17px;\">Azure Monitor Alert</strong></b></u><br><br><b><strong>Customer: </strong></b>@{body('Parse_JSON')?['CustomerID']}<br><br>Alert: @{body('Parse_JSON')?['data']?['essentials']?['alertRule']}<br>Severity: @{body('Parse_JSON')?['data']?['essentials']?['severity']}<br>SignalType: @{body('Parse_JSON')?['data']?['essentials']?['signalType']}</p><br><br><p>Resource: @{items('For_each_1')}</p><p><br>EventSource: @{body('Parse_JSON')?['data']?['alertContext']?['eventSource']}<br>eventTimeStamp:@{body('Parse_JSON')?['data']?['alertContext']?['eventTimestamp']}<br>Level: @{body('Parse_JSON')?['data']?['alertContext']?['level']}<br>Operation: @{body('Parse_JSON')?['data']?['alertContext']?['operationName']}<br>Status: @{body('Parse_JSON')?['data']?['alertContext']?['status']}</p><br><br><br>"
+                      },
+                      "path": "/beta/teams/conversation/message/poster/Flow bot/location/@{encodeURIComponent('Channel')}"
+                    }
+                  }
+                }
+              }
+            },
+            "case": "Activity Log - Administrative"
+          }
+        },
+        "runAfter": {
+          "Parse_JSON": [
+            "Succeeded",
+            "Failed"
+          ]
+        }
+      },
+      "Parse_JSON": {
+        "type": "ParseJson",
+        "inputs": {
+          "content": "@outputs('Compose')",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "schemaId": {
+                "type": "string"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "essentials": {
+                    "type": "object",
+                    "properties": {
+                      "alertId": {
+                        "type": "string"
+                      },
+                      "alertRule": {
+                        "type": "string"
+                      },
+                      "severity": {
+                        "type": "string"
+                      },
+                      "signalType": {
+                        "type": "string"
+                      },
+                      "monitorCondition": {
+                        "type": "string"
+                      },
+                      "monitoringService": {
+                        "type": "string"
+                      },
+                      "alertTargetIDs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "configurationItems": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "originAlertId": {
+                        "type": "string"
+                      },
+                      "firedDateTime": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "essentialsVersion": {
+                        "type": "string"
+                      },
+                      "alertContextVersion": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "alertContext": {
+                    "type": "object",
+                    "properties": {
+                      "channels": {
+                        "type": "string"
+                      },
+                      "claims": {
+                        "type": "string"
+                      },
+                      "caller": {
+                        "type": "string"
+                      },
+                      "correlationId": {
+                        "type": "string"
+                      },
+                      "eventSource": {
+                        "type": "string"
+                      },
+                      "eventTimestamp": {
+                        "type": "string"
+                      },
+                      "httpRequest": {
+                        "type": "string"
+                      },
+                      "eventDataId": {
+                        "type": "string"
+                      },
+                      "level": {
+                        "type": "string"
+                      },
+                      "operationName": {
+                        "type": "string"
+                      },
+                      "operationId": {
+                        "type": "string"
+                      },
+                      "properties": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          },
+                          "details": {
+                            "type": "string"
+                          },
+                          "currentHealthStatus": {
+                            "type": "string"
+                          },
+                          "previousHealthStatus": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "cause": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "subStatus": {
+                        "type": "string"
+                      },
+                      "tenantId": {
+                        "type": "string"
+                      },
+                      "submissionTimestamp": {
+                        "type": "string"
+                      },
+                      "ReceivedTime": {
+                        "type": "string"
+                      },
+                      "ingestionTime": {
+                        "type": "string"
+                      },
+                      "Activity Log Event Description": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customProperties": {
+                    "type": "object",
+                    "properties": {}
+                  }
+                }
+              },
+              "CustomerID": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "runAfter": {
+          "Compose": [
+            "Succeeded",
+            "Failed"
+          ]
+        }
+      }
+    },
+    "outputs": {},
+    "parameters": {
+      "$connections": {
+        "type": "Object",
+        "defaultValue": {}
+      }
+    }
+  },
+  "parameters": {
+    "$connections": {
+      "value": {
+        "teams": {
+          "id": "/subscriptions/c562b745-b9b6-4462-8937-6a1c1ff7fe72/providers/Microsoft.Web/locations/italynorth/managedApis/teams",
+          "connectionId": "/subscriptions/c562b745-b9b6-4462-8937-6a1c1ff7fe72/resourceGroups/RG-Research-Automation/providers/Microsoft.Web/connections/teams",
+          "connectionName": "teams"
+        }
+      }
+    }
+  }
+}
